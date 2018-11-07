@@ -1,0 +1,92 @@
+﻿@model QuanLyQuanAo.Models.HOADON
+@{
+	ViewBag.Title = "Index";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-sm-12">
+	<div class="col-sm-9"><h2 class="head">Nhân Viên Kế Toán</h2></div>
+	<div class="col-sm-3">@RenderPage("~/Views/Shared/_Logout.cshtml")</div>
+</div>
+<div class="col-sm-3">@Html.ActionLink("Home Accountant", "Index", "Home", new { @area = "Accountant" }, new { @class = "btn btn-success btn-style" })</div>
+<div class="col-sm-12" style="height:50px;"></div>
+
+<div class="col-sm-12">
+	@Html.TextBoxFor(m => m.ngayLapHoaDon, new { @class = "form-control", @placeholder = "YYYY-MM-DD" })
+</div>
+
+
+
+<div class="col-sm-12" style="height:50px;"></div>
+
+<div class="container">
+	<div class="row">
+		<div class="col-sm-12 clear">
+			<div class="panel-group">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h4>HÓA ĐƠN</h4>
+					</div>
+					<div class="panel-body">
+						<table class="table table-hover">
+							<thead>
+								<tr>
+									<th class="col-sm-1">ID</th>
+									<th class="col-sm-2">Tên SP</th>
+									<th class="col-sm-3">Ngày Lập Hóa Đơn</th>
+									<th class="col-sm-3">Mã Người Lập HĐ</th>
+									<th class="col-sm-3">Thành Tiền </th>
+								</tr>
+							</thead>
+							<tbody id="HoaDonRow">
+								@if (ViewBag.listInfoHoaDon != null)
+								{
+									var i = 1;
+									float tong = 0;
+									foreach (var item in ViewBag.listInfoHoaDon)
+									{
+										<tr>
+											<td>@i</td>
+											<td>@item.MaHoaDon</td>
+											<td>@item.NgayLapHoaDon</td>
+											<td>@item.MaNVienLapHDon</td>
+											<td>@item.ThanhTien</td>
+										</tr>
+										i++;
+										tong = tong + item.ThanhTien;
+									}
+									<tr>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td>Tổng Tiền Hóa Đơn:</td>
+										<td>@tong</td>
+									</tr>
+								}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	var search = function () { // sai cho nay
+		var data = $("#ngayLapHoaDon").serialize();
+		if (!$("#ngayLapHoaDon").valid()) {
+			return false;
+		}
+		$ajax({
+			type: Post,
+			url: "/Accountant/Home/GetSearchRecord?SearchText=" + searchText,
+			data: data,
+			success: function (response) {
+
+				$("#HoaDonRow").html(response);
+			}
+
+		})
+	}
+</script>

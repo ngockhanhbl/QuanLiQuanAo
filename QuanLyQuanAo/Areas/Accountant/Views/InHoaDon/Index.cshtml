@@ -1,0 +1,136 @@
+﻿@model QuanLyQuanAo.Areas.Accountant.Models.AccountantInHoaDon
+@{
+	ViewBag.Title = "Index";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-sm-12">
+	<div class="col-sm-9"><h2 class="head">Nhân Viên Kế Toán</h2></div>
+	<div class="col-sm-3">@RenderPage("~/Views/Shared/_Logout.cshtml")</div>
+</div>
+
+<div class="col-sm-12" style="height:50px;"></div>
+
+<div class="container">
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="col-sm-6">
+				<div class="col-sm-12">
+					<a class="btn btn-success btn-style" data-toggle="modal" data-target="#InHoaDon">Thêm Hóa Đơn Mới</a>
+					<div class="modal fade" id="InHoaDon">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<a class="close" data-dismiss="modal">&times;</a>
+									<h4>Thông Tin Hóa Đơn</h4>
+								</div>
+								<div class="modal-body">
+									<div class="row">
+										<div class="col-sm-12">
+											<form id="ThemHDon">
+												<div class="form-group">
+													<div class="col-sm-4">@Html.Label("Tên Khách Hàng:", new { @class = "label-style" })</div>
+													<div class="col-sm-8">@Html.TextBoxFor(Model => Model.KhachHang.tenKhachHang, new { @class = "form-control" })</div>
+												</div>
+												<div class="col-sm-12" style="height:10px;"></div>
+												<div class="form-group">
+													<div class="col-sm-4">@Html.Label("Số Điện Thoại:", new { @class = "label-style" })</div>
+													<div class="col-sm-8">@Html.TextBoxFor(Model => Model.KhachHang.SDT, new { @class = "form-control" })</div>
+												</div>
+												<div class="col-sm-12" style="height:10px;"></div>
+												<div class="form-group">
+													<div class="col-sm-4">@Html.Label("Địa Chỉ:", new { @class = "label-style" })</div>
+													<div class="col-sm-8">@Html.TextBoxFor(Model => Model.KhachHang.diaChi, new { @class = "form-control" })</div>
+												</div>
+												<div class="col-sm-12" style="height:10px;"></div>
+												<div class="form-group">
+													<div class="col-sm-4">@Html.Label("Tên Sản Phẩm:", new { @class = "label-style" })</div>
+													<div class="col-sm-8">@Html.DropDownListFor(Model => Model.Sanpham.tenSanPham, ViewBag.listSanPham as SelectList)</div>
+												</div>
+												<div class="col-sm-12" style="height:10px;"></div>
+												<div class="form-group">
+													<div class="col-sm-4">@Html.Label("Số Lượng:", new { @class = "label-style" })</div>
+													<div class="col-sm-8">@Html.TextBoxFor(Model => Model.HoaDon.soLuong, new { @class = "form-control" })</div>
+												</div>
+												<div class="col-sm-12" style="height:10px;"></div>
+												<div class="form-group">
+													<div class="col-sm-4">@Html.Label("Đơn Giá:", new { @class = "label-style" })</div>
+													<div class="col-sm-8">@Html.TextBoxFor(Model => Model.ChiTietSanPham.donGiaXuat, new { @class = "form-control" })</div>
+												</div>
+												<div class="col-sm-12" style="height:10px;"></div>
+												<div class="form-group">
+													<div class="col-sm-4">@Html.Label("Mã NV Lập HĐ:", new { @class = "label-style" })</div>
+													<div class="col-sm-8">@Html.TextBoxFor(Model => Model.NhanVien.maNhanVien, new { @class = "form-control" })</div>
+												</div>
+											</form>
+											<div class="col-sm-12" style="height:15px;"></div>
+										</div>
+									</div>
+								</div>
+
+								<div class="modal-footer">
+									<a class="btn btn-default" onclick="cancelAction()">Cancel</a>
+									<a class="btn btn-success" onclick="submitThemHDon()">Submit</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-6">
+				<div class="col-sm-12">
+					<div>@Html.ActionLink("Home Accountant", "Index", "Home", new { @area = "Accountant" }, new { @class = "btn btn-success btn-style" })</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="col-sm-12" style="height:50px;"></div>
+<div style="margin-left:20px;"><img src="~/Content/image/bills.jpg" class="img-responsive" /></div>
+<div class="col-sm-12" style="height:100px;"></div>
+
+
+
+<script>
+	var cancelAction = function () {
+		$("#KhachHang_tenKhachHang").val("");
+		$("#KhachHang_SDT").val("");
+		$("#KhachHang_diaChi").val("");
+		$("#Sanpham_tenSanPham").val("");
+		$("#HoaDon_soLuong").val("");
+		$("#ChiTietSanPham_donGiaXuat").val("");
+		$("#NhanVien.maNhanVien").val("");
+		$("#InHoaDon").modal("hide");
+	}
+
+	var submitThemHDon = function () {
+		var data = $("#ThemHDon").serialize();
+		if (!$("#ThemHDon").valid()) {
+			return false;
+		}
+		$.ajax({
+			type: "Post",
+			url: "/Admin/InHoaDon/JThemHDon",
+			data: data,
+			success: function (check) {
+				if (check == "true") {
+					$("#KhachHang_tenKhachHang").val("");
+					$("#KhachHang_SDT").val("");
+					$("#KhachHang_diaChi").val("");
+					$("#Sanpham_tenSanPham").val("");
+					$("#HoaDon_soLuong").val("");
+					$("#ChiTietSanPham_donGiaXuat").val("");
+					$("#NhanVien_maNhanVien").val("");
+					$("#InHoaDon").modal("hide");
+					alert("Success");
+
+				}
+				else
+					alert("failed");
+
+			}
+		})
+	}
+
+</script>

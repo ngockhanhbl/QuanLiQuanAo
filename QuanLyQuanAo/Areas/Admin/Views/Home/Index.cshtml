@@ -1,0 +1,122 @@
+﻿@model QuanLyQuanAo.Areas.Admin.Models.AdminSanPhamMoi
+@{
+	ViewBag.Title = "Index";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-sm-12">
+	<div class="col-sm-9"><h2 class="head">Admin</h2></div>
+	<div class="col-sm-3">@RenderPage("~/Views/Shared/_Logout.cshtml")</div>
+</div>
+<div class="col-sm-12" style="height:50px;"></div>
+
+<div class="container">
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="col-sm-6">
+				<div class="col-sm-12">
+					<a class="btn btn-success btn-style" data-toggle="modal" data-target="#ThemMoiSP">Thêm Sản Phẩm Mới</a>
+					<div class="modal fade" id="ThemMoiSP">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<a class="close" data-dismiss="modal">&times;</a>
+									<h4>Thêm Sản Phẩm Mới</h4>
+								</div>
+								<div class="modal-body">
+									<div class="row">
+										<div class="col-sm-12">
+											<form id="ThemSp">
+												<div class="form-group">
+													<div class="col-sm-4">@Html.Label("Tên Hàng:", new { @class = "label-style" })</div>
+													<div class="col-sm-8">@Html.TextBoxFor(Model => Model.SanPham.tenSanPham, new { @class = "form-control" })</div>
+												</div>
+												<div class="col-sm-12" style="height:10px;"></div>
+												<div class="form-group">
+													<div class="col-sm-4">@Html.Label("Size:", new { @class = "label-style" })</div>
+													<div class="col-sm-8">@Html.TextBoxFor(Model => Model.SanPham.size, new { @class = "form-control" })</div>
+												</div>
+												<div class="col-sm-12" style="height:10px;"></div>
+												<div class="form-group">
+													<div class="col-sm-4">@Html.Label("Xuất Xứ:", new { @class = "label-style" })</div>
+													<div class="col-sm-8">@Html.TextBoxFor(Model => Model.SanPham.xuatXu, new { @class = "form-control" })</div>
+												</div>
+												<div class="col-sm-12" style="height:10px;"></div>
+												<div class="form-group">
+													<div class="col-sm-4">@Html.Label("Đơn Giá Nhập:", new { @class = "label-style" })</div>
+													<div class="col-sm-8">@Html.TextBoxFor(Model => Model.ChiTietSanPham.donGiaNhap, new { @class = "form-control" })</div>
+												</div>
+												<div class="col-sm-12" style="height:10px;"></div>
+												<div class="form-group">
+													<div class="col-sm-4">@Html.Label("Đơn Giá Bán:", new { @class = "label-style" })</div>
+													<div class="col-sm-8">@Html.TextBoxFor(Model => Model.ChiTietSanPham.donGiaXuat, new { @class = "form-control" })</div>
+												</div>
+
+												
+											</form>
+											<div class="col-sm-12" style="height:15px;"></div>
+										</div>
+									</div>
+								</div>
+
+								<div class="modal-footer">
+									<a class="btn btn-default" onclick="cancelAction()">Cancel</a>
+									<a class="btn btn-success" onclick="submitThemSP()">Submit</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-6">
+				<div class="col-sm-12">
+					<div>@Html.ActionLink("Quản Lí Nhân Viên", "Index", "QLyNhanVien", new { @area = "Admin" }, new { @class = "btn btn-success btn-style" })</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="col-sm-12" style="height:50px;"></div>
+<div style="margin-left:20px;"><img src="~/Content/image/ImageAD.png" class="img-responsive" /></div>
+<div class="col-sm-12" style="height:100px;"></div>
+
+<script>
+	var cancelAction = function () {
+		$("#SanPham_tenSanPham").val("");
+		$("#SanPham_maSanPham").val("");
+		$("#SanPham_size").val("");
+		$("#SanPham_xuatXu").val("");
+		$("#ChiTietSanPham_donGiaNhap").val("");
+		$("#ChiTietSanPham_donGiaXuat").val("");
+		$("#ThemMoiSP").modal("hide");
+	}
+
+	var submitThemSP = function () {
+		var data = $("#ThemSp").serialize();
+		if (!$("#ThemSp").valid()) {
+			return false;
+		}
+		$.ajax({
+			type: "Post",
+			url: "/Admin/Home/JThemSPMoi",
+			data: data,
+			success: function (check) {
+				if (check == "true") {
+					$("#ThemSp").modal("hide");
+					$("#SanPham_tenSanPham").val("");
+					$("#SanPham_size").val("");
+					$("#SanPham_xuatXu").val("");
+					$("#ChiTietSanPham_donGiaNhap").val("");
+					$("#ChiTietSanPham_donGiaXuat").val("");
+					alert("Success");
+
+				}
+				else
+					alert("failed");
+
+			}
+		})
+	}
+
+</script>
