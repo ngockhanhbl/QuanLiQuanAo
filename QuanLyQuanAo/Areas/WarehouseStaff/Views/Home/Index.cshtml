@@ -32,7 +32,7 @@
 												<form id="NhapHang">
 													<div class="form-group">
 														<div class="col-sm-4">@Html.Label("Tên Hàng:", new { @class = "label-style" })</div>
-														<div class="col-sm-8">@Html.DropDownListFor(Model => Model.Nhap.maHang, ViewBag.listSanPham as SelectList)</div>
+														<div class="col-sm-8">@Html.DropDownListFor(Model => Model.Nhap.maHang, ViewBag.listSanPham as SelectList,new { @class="form-control"})</div>
 													</div>
 													<div class="col-sm-12" style="height:10px;"></div>
 													<div class="form-group">
@@ -74,7 +74,7 @@
 												<form id="XuatHang">
 													<div class="form-group">
 														<div class="col-sm-4">@Html.Label("Tên Hàng:", new { @class = "label-style" })</div>
-														<div class="col-sm-8">@Html.DropDownListFor(Modal => Model.Xuat.maHang, ViewBag.listSanPham as SelectList)</div>
+														<div class="col-sm-8">@Html.DropDownListFor(Modal => Model.Xuat.maHang, ViewBag.listSanPham as SelectList, new { @class = "form-control" })</div>
 													</div>
 													<div class="col-sm-12" style="height:10px;"></div>
 													<div class="form-group">
@@ -174,6 +174,7 @@
 					$("#nhapkhoModal").modal("hide");
 					$("#Nhap_soLuong").val("");
 					alert("Success");
+					window.location.reload();
 
 				}
 				else
@@ -197,6 +198,7 @@
 					$("#xuatkhoModal").modal("hide");
 					$("#Xuat_soLuong").val("");
 					alert("Success");
+					window.location.reload();
 				}
 				else
 					alert("Failed");

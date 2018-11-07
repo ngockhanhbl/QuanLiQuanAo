@@ -22,13 +22,15 @@ namespace QuanLyQuanAo.Areas.Accountant.Controllers
 
         public ActionResult GetSearchRecord(string SearchText)
         {
-            DateTime time =  DateTime.Parse(SearchText);
-            int Nam = time.Year;
-            int Thang = time.Month;
-            int Ngay = time.Day;
+      //      DateTime time = DateTime.Parse(SearchText);
+      //      int Nam = time.Year;
+      //      int Thang = time.Month;
+      //      int Ngay = time.Day;
             QLQuanAoDBContent db = new QLQuanAoDBContent();
-            List<HOADON> list = db.HOADONs.Where(x => x.ngayLapHoaDon.Year == Nam  &&  x.ngayLapHoaDon.Month == Thang && x.ngayLapHoaDon.Day == Ngay).Select(x => new HOADON { maHoaDon = x.maHoaDon, ngayLapHoaDon = x.ngayLapHoaDon, thanhTien = x.thanhTien }).ToList();
+            //List<HOADON> list = db.HOADONs.Where(x => x.ngayLapHoaDon.Year == Nam  &&  x.ngayLapHoaDon.Month == Thang && x.ngayLapHoaDon.Day == Ngay).Select(x => new HOADON { maHoaDon = x.maHoaDon, ngayLapHoaDon = x.ngayLapHoaDon, thanhTien = x.thanhTien }).ToList();
+            List <HOADON> list = db.HOADONs.Where(x=>x.maHoaDon == SearchText).ToList();
             return PartialView("SearchPartial", list);
+
         }
 
 

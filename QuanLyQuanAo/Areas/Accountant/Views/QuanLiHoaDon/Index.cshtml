@@ -12,7 +12,8 @@
 <div class="col-sm-12" style="height:50px;"></div>
 
 <div class="col-sm-12">
-	@Html.TextBoxFor(m => m.ngayLapHoaDon, new { @class = "form-control", @placeholder = "YYYY-MM-DD" })
+	<div class="col-sm-3">@Html.Label("Tìm Theo Mã NV or Mã Hóa Đơn")</div>
+	<div class="col-sm-9">@Html.TextBoxFor(m => m.maHoaDon, new { @class = "form-control", @placeholder = "YYYY-MM-DD" })</div>
 </div>
 
 
@@ -32,7 +33,7 @@
 							<thead>
 								<tr>
 									<th class="col-sm-1">ID</th>
-									<th class="col-sm-2">Tên SP</th>
+									<th class="col-sm-2">Mã Hóa Đơn</th>
 									<th class="col-sm-3">Ngày Lập Hóa Đơn</th>
 									<th class="col-sm-3">Mã Người Lập HĐ</th>
 									<th class="col-sm-3">Thành Tiền </th>
@@ -73,20 +74,40 @@
 </div>
 
 <script>
-	var search = function () { // sai cho nay
-		var data = $("#ngayLapHoaDon").serialize();
-		if (!$("#ngayLapHoaDon").valid()) {
-			return false;
-		}
-		$ajax({
-			type: Post,
-			url: "/Accountant/Home/GetSearchRecord?SearchText=" + searchText,
-			data: data,
-			success: function (response) {
+	//var search = function () { // sai cho nay
+	//	var dulieu = $("#maHoaDon").serialize(); 
+	//	if (!$("#maHoaDon").valid()) {
+	//		return false;
+	//	}
+	//	$ajax({
+	//		type: "html",
+	//		url: "/Accountant/Home/GetSearchRecord?SearchText=" + searchText,
+	////		contentType:"html",
+	//		dulieu: data,
+	//		success: function (response) {
 
-				$("#HoaDonRow").html(response);
-			}
+	//			$("#HoaDonRow").html(response);
+	//		}
+
+	//	})
+	//}
+
+
+
+
+	$(document).ready(function () {
+		$("#maHoaDon").keydown(function () {
+			var SearchText = $(this).val();
+			
+			$.ajax({
+				type: "Post",
+				url: "/Accountant/Home/GetSearchRecord?SearchText=" + SearchText,
+				contentType: "html",
+				success: function (response) {
+					$("#HoaDonRow").html(response);
+				}
+			})
 
 		})
-	}
+	})
 </script>

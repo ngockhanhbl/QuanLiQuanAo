@@ -1,27 +1,32 @@
 ﻿@model IEnumerable<QuanLyQuanAo.Models.HOADON>
 
 
-@if (ViewBag.listInfoHoaDon != null)
+@if (Model != null)
 {
 	var i = 1;
-	float tong = 0;
-	foreach (var item in ViewBag.listInfoHoaDon)
+	double tong = 0;
+	foreach (var item in Model)
 	{
 		<tr>
 			<td>@i</td>
-			<td>@item.MaHoaDon</td>
-			<td>@item.NgayLapHoaDon</td>
-			<td>@item.MaNVienLapHDon</td>
-			<td>@item.ThanhTien</td>
+			<td>@item.maHoaDon</td>
+			<td>@item.ngayLapHoaDon</td>
+			<td>@item.maNhanVien</td>
+			<td>@item.thanhTien</td>
 		</tr>
 		i++;
-		tong = tong + item.ThanhTien;
+		tong = tong + item.thanhTien;
 	}
 	<tr>
+		<td></td>
 		<td></td>
 		<td></td>
 		<td>Tổng Tiền Hóa Đơn:</td>
 		<td>@tong</td>
 	</tr>
+}
+else
+{
+	//
 }
 
