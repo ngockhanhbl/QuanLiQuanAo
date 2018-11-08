@@ -1,7 +1,9 @@
 ﻿@model QuanLyQuanAo.Areas.WarehouseStaff.Models.WarehouseNhapXuat
 @{
-	ViewBag.Title = "Index";
-	Layout = "~/Views/Shared/_Layout.cshtml";
+				/**/
+
+				ViewBag.Title = "Index";
+				Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="col-sm-12">
 	<div class="col-sm-9"><h2 class="head">Nhân Viên Kho</h2></div>
@@ -32,7 +34,7 @@
 												<form id="NhapHang">
 													<div class="form-group">
 														<div class="col-sm-4">@Html.Label("Tên Hàng:", new { @class = "label-style" })</div>
-														<div class="col-sm-8">@Html.DropDownListFor(Model => Model.Nhap.maHang, ViewBag.listSanPham as SelectList,new { @class="form-control"})</div>
+														<div class="col-sm-8">@Html.DropDownListFor(Model => Model.Nhap.maHang, ViewBag.listSanPham as SelectList, new { @class = "form-control" })</div>
 													</div>
 													<div class="col-sm-12" style="height:10px;"></div>
 													<div class="form-group">
@@ -190,7 +192,7 @@
 			return false;
 		}
 		$.ajax({
-			type: "Post",
+			type: "POST",
 			url: "/WarehouseStaff/Home/XuatKho",
 			data: data,
 			success: function (check) {

@@ -16,15 +16,15 @@ namespace QuanLyQuanAo.Models.DAO
         public string size { get; set; }
         [Required]
         public string xuatXu { get; set; }
-     
+
         public string getNextMaSP()
         {
             QLQuanAoDBContent db = new QLQuanAoDBContent();
             List<SANPHAM> c = db.SANPHAMs.ToList();
             int max = 0;
-            for(int i = 0; i < c.Count; i++)
+            for (int i = 0; i < c.Count; i++)
             {
-                if(int.Parse(c[i].maSanPham)>max)
+                if (int.Parse(c[i].maSanPham) > max)
                 {
                     max = int.Parse(c[i].maSanPham);
                 }
@@ -34,7 +34,7 @@ namespace QuanLyQuanAo.Models.DAO
                 return "1";
             else
             {
-                return (max+1).ToString();
+                return (max + 1).ToString();
             }
         }
 
@@ -51,6 +51,13 @@ namespace QuanLyQuanAo.Models.DAO
 
         }
 
-
+        public List<SANPHAM> getListSanPham()
+        {
+            QLQuanAoDBContent db = new QLQuanAoDBContent();
+            List<SANPHAM> list = db.SANPHAMs.ToList();
+            return list;
+        }
     }
+
+
 }

@@ -30,6 +30,10 @@ namespace QuanLyQuanAo.Areas.WarehouseStaff.Controllers
             return Json("true", JsonRequestBehavior.AllowGet);
         }
 
+  
+
+
+
         public JsonResult XuatKho(WarehouseNhapXuat model)
         {
             WarehouseXuatKho model1 = new WarehouseXuatKho();

@@ -29,10 +29,10 @@
 						<h4>HÓA ĐƠN</h4>
 					</div>
 					<div class="panel-body">
-						<table class="table table-hover">
+						<table class="table table-hover" >
 							<thead>
 								<tr>
-									<th class="col-sm-1">ID</th>
+									<th class="col-sm-1">Số Thứ Tự</th>
 									<th class="col-sm-2">Mã Hóa Đơn</th>
 									<th class="col-sm-3">Ngày Lập Hóa Đơn</th>
 									<th class="col-sm-3">Mã Người Lập HĐ</th>
@@ -74,37 +74,19 @@
 </div>
 
 <script>
-	//var search = function () { // sai cho nay
-	//	var dulieu = $("#maHoaDon").serialize(); 
-	//	if (!$("#maHoaDon").valid()) {
-	//		return false;
-	//	}
-	//	$ajax({
-	//		type: "html",
-	//		url: "/Accountant/Home/GetSearchRecord?SearchText=" + searchText,
-	////		contentType:"html",
-	//		dulieu: data,
-	//		success: function (response) {
 
-	//			$("#HoaDonRow").html(response);
-	//		}
-
-	//	})
-	//}
-
-
+	
 
 
 	$(document).ready(function () {
-		$("#maHoaDon").keydown(function () {
-			var SearchText = $(this).val();
-			
+		$("#mahoadon").keydown(function () {
+			var searchtext = $(this).val();			
 			$.ajax({
-				type: "Post",
-				url: "/Accountant/Home/GetSearchRecord?SearchText=" + SearchText,
-				contentType: "html",
+				type: "post",
+				url: "/accountant/home/getsearchrecord?searchtext=" + searchtext,
+				contenttype: "html",
 				success: function (response) {
-					$("#HoaDonRow").html(response);
+					$("#hoadonrow").html(response);
 				}
 			})
 

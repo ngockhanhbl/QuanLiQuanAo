@@ -14,6 +14,7 @@ namespace QuanLyQuanAo.Models.DAO
         public double donGiaNhap { get; set; }
         [Required]
         public double donGiaXuat { get; set; }
+        public string tenSanPham { get; set; }
 
         public void ThemChiTietSanPhamMoi(CHITIETSANPHAM modifier, string maSanPham)
         {
@@ -26,6 +27,17 @@ namespace QuanLyQuanAo.Models.DAO
             db.SaveChanges();
 
         }
+        public List<CHITIETSANPHAM> getListSanPham()
+        {
+            QLQuanAoDBContent db = new QLQuanAoDBContent();
+            List<CHITIETSANPHAM> list = db.CHITIETSANPHAMs.ToList();
+            return list;
+        }
+        public List<ModifierChiTietSanPham> getListFullSanPham()
+        {
+            return new QLQuanAoDBContent().CHITIETSANPHAMs.Select(x => new ModifierChiTietSanPham { maSanPham = x.maSanPham, tenSanPham = x.SANPHAM.tenSanPham, donGiaNhap = (double)x.donGiaNhap, donGiaXuat = (double)x.donGiaXuat }).ToList();
+        }
+
 
     }
 

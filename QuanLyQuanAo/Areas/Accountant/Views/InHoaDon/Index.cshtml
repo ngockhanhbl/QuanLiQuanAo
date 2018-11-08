@@ -9,90 +9,159 @@
 	<div class="col-sm-3">@RenderPage("~/Views/Shared/_Logout.cshtml")</div>
 </div>
 
-<div class="col-sm-12" style="height:50px;"></div>
 
+<div class="col-sm-3">
+	<div class="col-sm-12">
+		<div>@Html.ActionLink("Home Accountant", "Index", "Home", new { @area = "Accountant" }, new { @class = "btn btn-success btn-style" })</div>
+	</div>
+</div>
+
+
+
+<div class="col-sm-12" style="height:50px;"></div>
 <div class="container">
 	<div class="row">
 		<div class="col-sm-12">
-			<div class="col-sm-6">
+			<form id="formInHoaDon">
 				<div class="col-sm-12">
-					<a class="btn btn-success btn-style" data-toggle="modal" data-target="#InHoaDon">Thêm Hóa Đơn Mới</a>
-					<div class="modal fade" id="InHoaDon">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header">
-									<a class="close" data-dismiss="modal">&times;</a>
-									<h4>Thông Tin Hóa Đơn</h4>
-								</div>
-								<div class="modal-body">
-									<div class="row">
-										<div class="col-sm-12">
-											<form id="ThemHDon">
-												<div class="form-group">
-													<div class="col-sm-4">@Html.Label("Tên Khách Hàng:", new { @class = "label-style" })</div>
-													<div class="col-sm-8">@Html.TextBoxFor(Model => Model.KhachHang.tenKhachHang, new { @class = "form-control" })</div>
-												</div>
-												<div class="col-sm-12" style="height:10px;"></div>
-												<div class="form-group">
-													<div class="col-sm-4">@Html.Label("Số Điện Thoại:", new { @class = "label-style" })</div>
-													<div class="col-sm-8">@Html.TextBoxFor(Model => Model.KhachHang.SDT, new { @class = "form-control" })</div>
-												</div>
-												<div class="col-sm-12" style="height:10px;"></div>
-												<div class="form-group">
-													<div class="col-sm-4">@Html.Label("Địa Chỉ:", new { @class = "label-style" })</div>
-													<div class="col-sm-8">@Html.TextBoxFor(Model => Model.KhachHang.diaChi, new { @class = "form-control" })</div>
-												</div>
-												<div class="col-sm-12" style="height:10px;"></div>
-												<div class="form-group">
-													<div class="col-sm-4">@Html.Label("Tên Sản Phẩm:", new { @class = "label-style" })</div>
-													<div class="col-sm-8">@Html.DropDownListFor(Model => Model.Sanpham.tenSanPham, ViewBag.listSanPham as SelectList)</div>
-												</div>
-												<div class="col-sm-12" style="height:10px;"></div>
-												<div class="form-group">
-													<div class="col-sm-4">@Html.Label("Số Lượng:", new { @class = "label-style" })</div>
-													<div class="col-sm-8">@Html.TextBoxFor(Model => Model.HoaDon.soLuong, new { @class = "form-control" })</div>
-												</div>
-												<div class="col-sm-12" style="height:10px;"></div>
-												<div class="form-group">
-													<div class="col-sm-4">@Html.Label("Đơn Giá:", new { @class = "label-style" })</div>
-													<div class="col-sm-8">@Html.TextBoxFor(Model => Model.ChiTietSanPham.donGiaXuat, new { @class = "form-control" })</div>
-												</div>
-												<div class="col-sm-12" style="height:10px;"></div>
-												<div class="form-group">
-													<div class="col-sm-4">@Html.Label("Mã NV Lập HĐ:", new { @class = "label-style" })</div>
-													<div class="col-sm-8">@Html.TextBoxFor(Model => Model.NhanVien.maNhanVien, new { @class = "form-control" })</div>
-												</div>
-											</form>
-											<div class="col-sm-12" style="height:15px;"></div>
-										</div>
-									</div>
-								</div>
+					<div class="col-sm-6">
+						<div class="col-sm-12">
+							<div class="col-sm-4 text-left">@Html.Label("Địa Chỉ  :", new { @class = "label-style" })</div>
+							<div class="col-sm-8">@Html.TextBoxFor(Model => Model.KhachHang.diaChi)</div>
 
-								<div class="modal-footer">
-									<a class="btn btn-default" onclick="cancelAction()">Cancel</a>
-									<a class="btn btn-success" onclick="submitThemHDon()">Submit</a>
-								</div>
+							<div class="col-sm-12" style="height:10px;"></div>
+
+							<div class="col-sm-4 text-left">@Html.Label("Tên Khách Hàng:", new { @class = "label-style" })</div>
+							<div class="col-sm-8">@Html.TextBoxFor(Model => Model.KhachHang.tenKhachHang)</div>
+
+							<div class="col-sm-12" style="height:10px;"></div>
+
+							<div class="col-sm-4 text-left">@Html.Label("Số Điện Thoại:", new { @class = "label-style" })</div>
+							<div class="col-sm-8">@Html.TextBoxFor(Model => Model.KhachHang.SDT)</div>
+
+							<div class="col-sm-12" style="height:10px;"></div>
+
+							<div class="col-sm-4 text-left">@Html.Label("Mã Nhân Viên:", new { @class = "label-style" })</div>
+							<div class="col-sm-8">@Html.TextBoxFor(Model => Model.HoaDon.maNhanVien)</div>
+
+							<div class="col-sm-12" style="height:10px;"></div>
+
+							<div class="col-sm-4 text-left">@Html.Label("Ngày Lập HĐ:", new { @class = "label-style" })</div>
+							<div class="col-sm-8">@Html.TextBoxFor(Model => Model.HoaDon.ngayLapHoaDon)</div>
+
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="col-sm-12">
+							<div class="col-sm-12">
+								<div class="col-sm-5"> @Html.Label("Tên Cửa Hàng:", new { @class = "label-style" })</div>
+								<div class="col-sm-7">@Html.Label("ESC STORE", new { @class = "label-style-floatleft" })</div>
+							</div>
+
+							<div class="col-sm-12" style="height:10px;"></div>
+
+							<div class="col-sm-12">
+								<div class="col-sm-5">@Html.Label("Địa Chỉ: ", new { @class = "label-style" })</div>
+								<div class="col-sm-7">@Html.Label("79/4A Lý Thường Kiệt,p8, Tân Bình", new { @class = "label-style-floatleft" })</div>
+
+							</div>
+
+							<div class="col-sm-12" style="height:10px;"></div>
+
+							<div class="col-sm-12">
+								<div class="col-sm-5">@Html.Label("Số Điện Thoại: ", new { @class = "label-style" })</div>
+								<div class="col-sm-7">@Html.Label(" 0965106971-01656378189", new { @class = "label-style-floatleft" })</div>
+
+							</div>
+
+							<div class="col-sm-12" style="height:10px;"></div>
+
+							<div class="col-sm-12">
+								<div class="col-sm-5">@Html.Label("Ngày Xuất HĐ: ", new { @class = "label-style" })</div>
+								<div class="col-sm-7">@Html.Label(DateTime.Now.Date.ToString("dd/MM/yyyy"), new { @class = "label-style-floatleft" })</div>
+							</div>
+							<div class="col-sm-12" style="height:10px;"></div>
+							<div class="col-sm-12">
+								<div class="col-sm-5">@Html.Label("Mã Hóa Đơn: ", new { @class = "label-style" })</div>
+								<div class="col-sm-7">@Html.Label((string)ViewBag.NextMaHoaDon, new { @class = "label-style-floatleft" })</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="col-sm-6">
 				<div class="col-sm-12">
-					<div>@Html.ActionLink("Home Accountant", "Index", "Home", new { @area = "Accountant" }, new { @class = "btn btn-success btn-style" })</div>
+					<div class="panel-group">
+						<div class="panel panel-primary">
+							<div class="panel-body">
+								<table class="table table-hover">
+									<thead>
+										<tr>
+											<th class="col-sm-1">Số Thứ Tự</th>
+											<th class="col-sm-4">Tên Sản Phẩm</th>
+											<th class="col-sm-2">Số Lượng</th>
+											<th class="col-sm-3">Đơn Giá</th>
+											<th class="col-sm-2">Thành Tiền </th>
+										</tr>
+									</thead>
+									<tbody id="HoaDonRow">
+										@for (int i = 1; i <= 10; i++)
+										{
+
+
+											<tr>
+												<td>@i</td>
+												<td class="fChange()">@Html.DropDownListFor(Modal => Modal.Sanpham.tenSanPham, ViewBag.listSanPham as SelectList, new { @class = "form-control" })</td>
+												<td>@Html.TextBoxFor(Modal => Modal.HoaDon.soLuong, new { @class = "form-control", @placeholder = "100 " })</td>
+												<td id="IDdonGia"></td>
+												<td></td>
+											</tr>
+
+										}
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
 				</div>
-			</div>
+
+
+
+
+
+			</form>
 		</div>
+
+
+
 	</div>
 </div>
 
-<div class="col-sm-12" style="height:50px;"></div>
-<div style="margin-left:20px;"><img src="~/Content/image/bills.jpg" class="img-responsive" /></div>
-<div class="col-sm-12" style="height:100px;"></div>
+
 
 
 
 <script>
+
+	@*function fChange() {
+		var val = $("#Sanpham_tenSanPham").value;
+		alert($('option:selected', this).text());
+
+
+		var GiaXuat;
+		if(@ViewBag.listChiTietSanPham != null)
+		{
+
+			foreach(var item in @ViewBag.listChiTietSanPham)
+			{
+				if (item.tenSanPham == val)
+				{
+					GiaXuat = item.DongiaXuat
+				}
+			}
+		}
+		document.getElementById("IDdonGia").value = GiaXuat;
+	}*@
+
+
 	var cancelAction = function () {
 		$("#KhachHang_tenKhachHang").val("");
 		$("#KhachHang_SDT").val("");
@@ -132,5 +201,68 @@
 			}
 		})
 	}
+	@*window.onload = function () {
+		let filter = document.getElementById('Sanpham_tenSanPham');
+		filter.onchange = function () {
+			alert($('option:selected', this).text());
+		var x = document.getElementById("Sanpham_tenSanPham").value;
+			var GiaXuat;
+
+		if(@ViewBag.listChiTietSanPham != null)
+		{
+
+			foreach(var item in @ViewBag.listChiTietSanPham)
+			{
+				if(item.tenSanPham == x)
+				{
+					GiaXuat = item.DongiaXuat;
+				}
+			}
+		}
+		alert("Thanh Cong");
+
+		document.getElementById("IDdonGia").value = GiaXuat;
+		}
+	}*@
+
+
+
+	@*$(function () {
+		$("#Sanpham_tenSanPham").change(function () {
+			var x = document.getElementById("Sanpham_tenSanPham").value;
+			alert($('option:selected', this).text());
+		if(ViewBag.listChiTietSanPham != null){
+				@foreach (var item in ViewBag.listChiTietSanPham){
+
+					if (item.tenSanPham == x){
+						var K = item.DongiaXuat;
+				}
+			}
+	}
+			document.getElementById("IDdonGia").innerHTML = K;
+
+		})
+	});*@
+
+
+	@*function TenSPFunction() {
+		var x = document.getElementById("Sanpham_tenSanPham").value;
+		var GiaXuat;
+		if(@ViewBag.listChiTietSanPham != null)
+		{
+
+			foreach(var item in @ViewBag.listChiTietSanPham)
+			{
+				if(item.tenSanPham == x)
+				{
+					GiaXuat = item.DongiaXuat
+				}
+			}
+		}
+		alert("Thanh Cong");
+
+		document.getElementById("IDdonGia").value = GiaXuat;
+	}*@
+
 
 </script>

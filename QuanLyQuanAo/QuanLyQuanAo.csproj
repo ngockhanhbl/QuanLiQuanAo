@@ -156,10 +156,12 @@
     <Compile Include="Areas\Accountant\Models\AccountantInHoaDon.cs" />
     <Compile Include="Areas\Accountant\Models\AccountantQuanLiHoaDon.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\DeXuatNhapKhoController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\QLyNhanVienController.cs" />
     <Compile Include="Areas\Admin\Models\AdminNhanVienMoi.cs" />
     <Compile Include="Areas\Admin\Models\AdminSanPhamMoi.cs" />
+    <Compile Include="Areas\Admin\Models\MDeXuatNhapKho.cs" />
     <Compile Include="Areas\WarehouseStaff\Controllers\HomeController.cs" />
     <Compile Include="Areas\WarehouseStaff\Models\WarehouseNhapKho.cs" />
     <Compile Include="Areas\WarehouseStaff\Models\WarehouseNhapXuat.cs" />
@@ -224,6 +226,7 @@
     <Content Include="Areas\Accountant\Views\InHoaDon\Index.cshtml" />
     <Content Include="Areas\Accountant\Views\QuanLiHoaDon\Index.cshtml" />
     <Content Include="Areas\Accountant\Views\Shared\SearchPartial.cshtml" />
+    <Content Include="Areas\Admin\Views\DeXuatNhapKho\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

@@ -13,7 +13,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-sm-12">
-			<div class="col-sm-6">
+			<div class="col-sm-12">
 				<div class="col-sm-12">
 					<a class="btn btn-success btn-style" data-toggle="modal" data-target="#ThemMoiSP">Thêm Sản Phẩm Mới</a>
 					<div class="modal fade" id="ThemMoiSP">
@@ -52,7 +52,7 @@
 													<div class="col-sm-8">@Html.TextBoxFor(Model => Model.ChiTietSanPham.donGiaXuat, new { @class = "form-control" })</div>
 												</div>
 
-												
+
 											</form>
 											<div class="col-sm-12" style="height:15px;"></div>
 										</div>
@@ -68,11 +68,19 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-sm-6">
+			<div class="col-sm-12">
 				<div class="col-sm-12">
 					<div>@Html.ActionLink("Quản Lí Nhân Viên", "Index", "QLyNhanVien", new { @area = "Admin" }, new { @class = "btn btn-success btn-style" })</div>
 				</div>
 			</div>
+
+			<div class="col-sm-12">
+				<div class="col-sm-12">
+					<div>@Html.ActionLink("Đề Xuất Nhập Kho", "Index", "DeXuatNhapKho", new { @area = "Admin" }, new { @class = "btn btn-success btn-style" })</div>
+				</div>
+			</div>
+
+
 		</div>
 	</div>
 </div>

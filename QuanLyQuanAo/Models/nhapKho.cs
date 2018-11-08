@@ -19,6 +19,8 @@ namespace QuanLyQuanAo.Models
 
         public DateTime? ngayNhap { get; set; }
 
+        public int? TrangThai { get; set; }
+
         public virtual SANPHAM SANPHAM { get; set; }
     }
 }

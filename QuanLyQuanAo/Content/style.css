@@ -38,3 +38,7 @@
     color:firebrick;
 }
 
+.label-style-floatleft{
+    padding-top:5px;
+    float:left;
+}
