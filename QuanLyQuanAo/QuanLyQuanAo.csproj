@@ -180,6 +180,7 @@
     <Compile Include="Models\DAO\ModifierChiTietSanPham.cs" />
     <Compile Include="Models\DAO\ModifierHD.cs" />
     <Compile Include="Models\DAO\ModifierNhanVien.cs" />
+    <Compile Include="Models\DAO\ModifierNhapKho.cs" />
     <Compile Include="Models\DAO\ModifierSP.cs" />
     <Compile Include="Models\DAO\ModifierTonKho.cs" />
     <Compile Include="Models\HOADON.cs" />

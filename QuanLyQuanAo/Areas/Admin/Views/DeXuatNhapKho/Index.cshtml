@@ -4,7 +4,8 @@
 	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@*<div class="container">
+<div class="col-sm-12" style="height:50px;"></div>
+<div class="container">
 	<div class="row">
 		<div class="col-sm-12 clear">
 			<div class="panel-group">
@@ -24,19 +25,21 @@
 									<th class="col-sm-2">Xuất Xứ</th>
 								</tr>
 							</thead>
-							<tbody>
-								@if (ViewBag.listInfoTonKho != null)
+							<tbody id="RowSanPham">
+								@if (ViewBag.listNhapKho != null)
 								{
-									int @i = 1;
-									foreach (var item in ViewBag.listInfoTonKho)
+									var i = 1;
+									foreach (var item in ViewBag.listNhapKho)
 									{
-										<tr>
+										<tr id="RowSanPham">
 											<td>@i</td>
-											<td>@item.TenSP</td>
-											<td>@item.maHang</td>											
+											<td>@item.tenSanPham</td>
+											<td>@item.maSanPham</td>
 											<td>@item.soLuong</td>
-											<td>@item.Size</td>
-											<td>@item.XuatXu</td>
+											<td>@item.size</td>
+											<td>@item.xuatXu</td>
+											<td><a class="btn btn-success" onclick="submitDone(@item.id,@item.maSanPham)"><i class="glyphicon glyphicon-ok"></i></a></td>
+											<td><a class="btn btn-danger" onclick="submitCancel(@item.id)"><i class="glyphicon glyphicon-remove"></i></a></td>
 										</tr>
 										i++;
 									}
@@ -48,5 +51,46 @@
 			</div>
 		</div>
 	</div>
-</div>*@
+</div>
 
+<script>
+	var submitDone = function (NhapKhoID,SPID) {
+		$.ajax({
+			type: "Post",
+			url: "/Admin/DeXuatNhapKho/updateTonKho",
+			data: { NKID: NhapKhoID, maSP: SPID },
+			success: function (check) {
+				if (check == "true") {
+					window.location.reload(true);
+					
+				}
+				else {
+					alert("False");
+				}
+
+
+			}
+		})
+	}
+
+	var submitCancel = function (NhapKhoID) {
+		$.ajax({
+			type: "Post",
+			url: "/Admin/DeXuatNhapKho/HuyDeXuatNhapKho",
+			data: { NKID: NhapKhoID },
+			success: function (check) {
+				if (check == "true") {
+					window.location.reload(true);
+
+				}
+				else {
+					alert("False");
+				}
+
+
+			}
+		})
+	}
+
+
+</script>

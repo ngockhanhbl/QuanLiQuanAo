@@ -52,10 +52,11 @@ namespace QuanLyQuanAo.Areas.WarehouseStaff.Models
             nhapKho.ngayNhap = DateTime.Now;
             nhapKho.soLuong = model.soLuong;
             nhapKho.maSanPham = model.maHang;
+            nhapKho.TrangThai = 0;
             db.nhapKhoes.Add(nhapKho);
             db.SaveChanges();
-            ModifierTonKho mtk = new ModifierTonKho();
-            mtk.UpdateTonKho(model.maHang, model.soLuong);
+            //ModifierTonKho mtk = new ModifierTonKho();
+            //mtk.UpdateTonKho(model.maHang, model.soLuong);
         }
     }
 

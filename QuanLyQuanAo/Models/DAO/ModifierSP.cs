@@ -57,6 +57,14 @@ namespace QuanLyQuanAo.Models.DAO
             List<SANPHAM> list = db.SANPHAMs.ToList();
             return list;
         }
+
+        public SANPHAM GetSanPhamBytenSP(string tenSP)
+        {
+            SANPHAM sp = new QLQuanAoDBContent().SANPHAMs.SingleOrDefault(x => x.tenSanPham == tenSP);
+            return sp;
+        }
+
+
     }
 
 

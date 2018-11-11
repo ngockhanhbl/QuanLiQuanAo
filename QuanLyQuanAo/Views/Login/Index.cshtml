@@ -15,7 +15,8 @@
 								<div class="col-sm-5">@Html.Label("Username:", new { @class = "label-style" })</div>
 								<div class="col-sm-7">
 									<div class="col-sm-12">@Html.TextBoxFor(Model => Model.username)</div>
-									<div class="col-sm-12">@Html.ValidationMessageFor(Model => Model.username, "", new { @class = "text-danger" })</div>
+									<div class="col-sm-12">@Html.ValidationMessageFor(Model => Model.username,"" , new { @class = "text-danger" })</div>
+									
 								</div>
 							</div>
 							<div class="col-sm-12" style="height:10px;"></div>
@@ -23,7 +24,7 @@
 								<div class="col-sm-5">@Html.Label("Password:", new { @class = "label-style" })</div>
 								<div class="col-sm-7">
 									<div class="col-sm-12">@Html.PasswordFor(Model => Model.password)</div>
-									<div class="col-sm-12">@Html.ValidationMessageFor(Model => Model.password, "", new { @class = "text-danger" })</div>
+									<div class="col-sm-12">@Html.ValidationMessageFor(Model => Model.password,"" , new { @class = "text-danger" })</div>
 
 
 								</div>
@@ -66,6 +67,7 @@
 		var data = $("#idLogin").serialize();
 
 		if (!$("#idLogin").valid()) {
+			
 			return false;
 		}
 

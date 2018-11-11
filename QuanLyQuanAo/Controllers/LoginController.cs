@@ -22,7 +22,7 @@ namespace QuanLyQuanAo.Controllers
             if (s == "0")
             {
                 //
-            }
+            }        
             else
             {
                 Session["username"] = model.username;

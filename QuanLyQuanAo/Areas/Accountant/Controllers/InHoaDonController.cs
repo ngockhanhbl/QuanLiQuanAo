@@ -24,9 +24,10 @@ namespace QuanLyQuanAo.Areas.Accountant.Controllers
             return RedirectToAction("Index", "Login", new { @area = "" });
         }
 
-        //public JsonResult JThemHDon()
-        //{
-        //    return;
-        //}
+        public JsonResult JGetGiaSP(AccountantInHoaDon model)
+        {           
+            double giaXuat = new ModifierChiTietSanPham().getGiaXuatByMaSp(model.Sanpham.maSanPham);     
+            return Json(giaXuat+"", JsonRequestBehavior.AllowGet);
+        }
     }
 }

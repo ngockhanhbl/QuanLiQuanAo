@@ -33,6 +33,16 @@ namespace QuanLyQuanAo.Models.DAO
             List<CHITIETSANPHAM> list = db.CHITIETSANPHAMs.ToList();
             return list;
         }
+
+        public double getGiaXuatByMaSp(string maSanPham)
+        {
+            QLQuanAoDBContent db = new QLQuanAoDBContent();          
+            CHITIETSANPHAM chitietSp = db.CHITIETSANPHAMs.SingleOrDefault(x => x.maSanPham == maSanPham);
+            return (double)chitietSp.donGiaXuat;
+        }
+
+
+
         public List<ModifierChiTietSanPham> getListFullSanPham()
         {
             return new QLQuanAoDBContent().CHITIETSANPHAMs.Select(x => new ModifierChiTietSanPham { maSanPham = x.maSanPham, tenSanPham = x.SANPHAM.tenSanPham, donGiaNhap = (double)x.donGiaNhap, donGiaXuat = (double)x.donGiaXuat }).ToList();

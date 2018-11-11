@@ -8,11 +8,10 @@ namespace QuanLyQuanAo.Models.DAO
 {
     public class Login
     {
-        [Required(ErrorMessage = "Chưa Nhập Username")]
+        [Required(ErrorMessage = "Chưa Nhập Username"),MinLength(4)]
         public string username { get; set; }
-        [Required (ErrorMessage ="Chưa Nhập PassWord")]
+        [Required (ErrorMessage ="Chưa Nhập PassWord"),MinLength(4)]
         public string password { get; set; }
-
         public string KTuserpass(string username , string password)
         {
             QLQuanAoDBContent db = new QLQuanAoDBContent();

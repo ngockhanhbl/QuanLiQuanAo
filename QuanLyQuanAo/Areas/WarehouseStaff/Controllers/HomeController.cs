@@ -26,18 +26,18 @@ namespace QuanLyQuanAo.Areas.WarehouseStaff.Controllers
         public JsonResult NhapKho(WarehouseNhapXuat model)
         {
             WarehouseNhapKho model1 = new WarehouseNhapKho();
-            model1.InsertNhapKho(model.Nhap);
+            model1.InsertNhapKho(model.Nhap);            
             return Json("true", JsonRequestBehavior.AllowGet);
         }
-
-  
-
 
 
         public JsonResult XuatKho(WarehouseNhapXuat model)
         {
             WarehouseXuatKho model1 = new WarehouseXuatKho();
-            model1.RemoveXuatKho(model.Xuat);
+            if (model1.RemoveXuatKho(model.Xuat) == "false")
+            {
+                return Json("false", JsonRequestBehavior.AllowGet);
+            }
             return Json("true", JsonRequestBehavior.AllowGet);
 
         }

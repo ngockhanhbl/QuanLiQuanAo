@@ -46,7 +46,7 @@ namespace QuanLyQuanAo.Areas.WarehouseStaff.Models
         }
 
 
-        public void RemoveXuatKho(WarehouseXuatKho model)
+        public string RemoveXuatKho(WarehouseXuatKho model)
         {
             QLQuanAoDBContent db = new QLQuanAoDBContent();
             XUATKHO xuat = new XUATKHO();
@@ -55,9 +55,14 @@ namespace QuanLyQuanAo.Areas.WarehouseStaff.Models
             xuat.soLuong = model.soLuong;
             xuat.maSanPham = model.maHang;
             db.XUATKHOes.Add(xuat);
-            db.SaveChanges();
+            
             ModifierTonKho mtk = new ModifierTonKho();
-            mtk.UpdateTonKho(model.maHang, model.soLuong*-1);
+            if (mtk.UpdateXuatTonKho(model.maHang, model.soLuong) == "false") {
+                return "false";
+            };
+            db.SaveChanges();
+            return "true";
+            
         }
 
 

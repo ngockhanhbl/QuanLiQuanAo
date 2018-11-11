@@ -105,20 +105,43 @@
 									<tbody id="HoaDonRow">
 										@for (int i = 1; i <= 10; i++)
 										{
-
-
 											<tr>
 												<td>@i</td>
-												<td class="fChange()">@Html.DropDownListFor(Modal => Modal.Sanpham.tenSanPham, ViewBag.listSanPham as SelectList, new { @class = "form-control" })</td>
-												<td>@Html.TextBoxFor(Modal => Modal.HoaDon.soLuong, new { @class = "form-control", @placeholder = "100 " })</td>
-												<td id="IDdonGia"></td>
-												<td></td>
+												@*<td>@Html.DropDownListFor(Modal => Modal.Sanpham.maSanPham, ViewBag.listSanPham as SelectList, "---Select---", new { @class = "form-control" })</td>*@
+												<td>@Html.DropDownListFor(Modal => Modal.Sanpham.maSanPham, ViewBag.listSanPham as SelectList, null, new { id = i, @class = "form-control" })</td>
+												<td>@Html.TextBoxFor(Modal => Modal.TonKho.soLuong, "SL", new { @class = "form-control" })</td>
+												<td>@Html.TextBoxFor(Modal => Modal.ChiTietSanPham.donGiaXuat, "GB", new { @class = "form-control" })</td>
+												<td>@Html.TextBoxFor(Modal => Modal.HoaDon.thanhTien, "TT", new { @class = "form-control", @readonly = "readonly" })</td>
 											</tr>
 
+
+
 										}
+
+										<tr>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td class="text-bold-center" >Thành Tiền</td>
+											<td >0</td>
+										</tr>
 									</tbody>
+								
+
+
 								</table>
+								<div class="col-sm-12">
+									<div class="col-sm-3">@Html.Label("Người Lập Phiếu",new { @class= " label-style" })</div>
+									<div class="col-sm-3">@Html.Label("Người Giao Hàng",new { @class= "label-style " })</div>
+									<div class="col-sm-3">@Html.Label("Thủ Kho",new { @class= " label-style " })</div>
+									<div class="col-sm-3">@Html.Label("Người Nhận Hàng",new { @class= "label-style " })</div>
+								</div>
 							</div>
+
+							<div class="panel panel-body">
+								
+							</div>
+
 						</div>
 					</div>
 				</div>
@@ -141,66 +164,76 @@
 
 <script>
 
-	@*function fChange() {
-		var val = $("#Sanpham_tenSanPham").value;
-		alert($('option:selected', this).text());
 
 
-		var GiaXuat;
-		if(@ViewBag.listChiTietSanPham != null)
-		{
+	$(document).ready(function () {
+		$("#Sanpham_maSanPham").on("change", function () {
 
-			foreach(var item in @ViewBag.listChiTietSanPham)
-			{
-				if (item.tenSanPham == val)
-				{
-					GiaXuat = item.DongiaXuat
-				}
-			}
-		}
-		document.getElementById("IDdonGia").value = GiaXuat;
-	}*@
+													var data = $("#Sanpham_maSanPham").serialize();
+			$.ajax({
+													type: "Post",
+				url: "/Accountant/InHoaDon/JGetGiaSP",
+				data: data,
+				success: function (check) {
+															if (check == "false") {
+																alert("false");
+
+															}
+															else {
+																var chuoi = check;
+																var gia = chuoi.parseInt(splited[0]);
+																var maSp = chuoi.toString().splited[1];
+						$("#SL-1").val(check);
+															}
 
 
-	var cancelAction = function () {
-		$("#KhachHang_tenKhachHang").val("");
-		$("#KhachHang_SDT").val("");
-		$("#KhachHang_diaChi").val("");
-		$("#Sanpham_tenSanPham").val("");
-		$("#HoaDon_soLuong").val("");
-		$("#ChiTietSanPham_donGiaXuat").val("");
-		$("#NhanVien.maNhanVien").val("");
-		$("#InHoaDon").modal("hide");
-	}
+														}
+													})
+		});
+											});
 
-	var submitThemHDon = function () {
-		var data = $("#ThemHDon").serialize();
-		if (!$("#ThemHDon").valid()) {
-			return false;
-		}
-		$.ajax({
-			type: "Post",
-			url: "/Admin/InHoaDon/JThemHDon",
-			data: data,
-			success: function (check) {
-				if (check == "true") {
-					$("#KhachHang_tenKhachHang").val("");
-					$("#KhachHang_SDT").val("");
-					$("#KhachHang_diaChi").val("");
-					$("#Sanpham_tenSanPham").val("");
-					$("#HoaDon_soLuong").val("");
-					$("#ChiTietSanPham_donGiaXuat").val("");
-					$("#NhanVien_maNhanVien").val("");
-					$("#InHoaDon").modal("hide");
-					alert("Success");
 
-				}
-				else
-					alert("failed");
 
-			}
-		})
-	}
+	//var cancelAction = function () {
+	//	$("#KhachHang_tenKhachHang").val("");
+	//	$("#KhachHang_SDT").val("");
+	//	$("#KhachHang_diaChi").val("");
+	//	$("#Sanpham_tenSanPham").val("");
+	//	$("#HoaDon_soLuong").val("");
+	//	$("#ChiTietSanPham_donGiaXuat").val("");
+	//	$("#NhanVien.maNhanVien").val("");
+	//	$("#InHoaDon").modal("hide");
+	//}
+
+	//var submitThemHDon = function () {
+	//	var data = $("#ThemHDon").serialize();
+	//	if (!$("#ThemHDon").valid()) {
+	//		return false;
+	//	}
+	//	$.ajax({
+	//		type: "Post",
+	//		url: "/Admin/InHoaDon/JThemHDon",
+	//		data: data,
+	//		success: function (check) {
+	//			if (check == "true") {
+	//				$("#KhachHang_tenKhachHang").val("");
+	//				$("#KhachHang_SDT").val("");
+	//				$("#KhachHang_diaChi").val("");
+	//				$("#Sanpham_tenSanPham").val("");
+	//				$("#HoaDon_soLuong").val("");
+	//				$("#ChiTietSanPham_donGiaXuat").val("");
+	//				$("#NhanVien_maNhanVien").val("");
+	//				$("#InHoaDon").modal("hide");
+	//				alert("Success");
+
+	//			}
+	//			else
+	//				alert("failed");
+
+	//		}
+	//	})
+	//}
+
 	@*window.onload = function () {
 		let filter = document.getElementById('Sanpham_tenSanPham');
 		filter.onchange = function () {
