@@ -12,6 +12,8 @@ namespace QuanLyQuanAo.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public SANPHAM()
         {
+            CHITIETHOADONs = new HashSet<CHITIETHOADON>();
+            DATHANGCHITIETs = new HashSet<DATHANGCHITIET>();
             nhapKhoes = new HashSet<nhapKho>();
             XUATKHOes = new HashSet<XUATKHO>();
         }
@@ -29,7 +31,13 @@ namespace QuanLyQuanAo.Models
         [StringLength(100)]
         public string xuatXu { get; set; }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CHITIETHOADON> CHITIETHOADONs { get; set; }
+
         public virtual CHITIETSANPHAM CHITIETSANPHAM { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DATHANGCHITIET> DATHANGCHITIETs { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<nhapKho> nhapKhoes { get; set; }

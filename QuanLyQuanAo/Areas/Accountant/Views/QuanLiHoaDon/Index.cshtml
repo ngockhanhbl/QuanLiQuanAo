@@ -12,13 +12,9 @@
 <div class="col-sm-12" style="height:50px;"></div>
 
 <div class="col-sm-12">
-	
 	<div class="col-sm-3">@Html.Label("Tìm Theo Mã NV or Mã Hóa Đơn")</div>
-
-	<div class="col-sm-9">@Html.TextBoxFor(m => m.maHoaDon, new { @class = "form-control", @placeholder = "MÃ NV OR MÃ HÓA ĐƠN" })</div>
+	<div class="col-sm-9">@Html.TextBoxFor(m=>m.maHoaDon, new { @class = "form-control", @placeholder = "MÃ NV OR MÃ HÓA ĐƠN" })</div>
 </div>
-
-
 
 <div class="col-sm-12" style="height:50px;"></div>
 
@@ -77,18 +73,17 @@
 
 <script>
 
-	
 
-
-	$(document).ready(function () {
-		$("#mahoadon").keydown(function () {
-			var searchtext = $(this).val();			
+	$(document).ready(function ()
+	{
+		$("#maHoaDon").keydown(function () {
+			var searchtext = $(this).val();
 			$.ajax({
-				type: "post",
-				url: "/accountant/home/getsearchrecord?searchtext=" + searchtext,
+				type: "Post",
+				url: "/Accountant/QuanLiHoaDon/GetSearchRecord?SearchText=" + searchtext,
 				contenttype: "html",
 				success: function (response) {
-					$("#hoadonrow").html(response);
+					$("#HoaDonRow").html(response);
 				}
 			})
 

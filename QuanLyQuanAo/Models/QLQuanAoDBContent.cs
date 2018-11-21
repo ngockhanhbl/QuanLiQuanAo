@@ -13,7 +13,10 @@ namespace QuanLyQuanAo.Models
         }
 
         public virtual DbSet<account> accounts { get; set; }
+        public virtual DbSet<CHITIETHOADON> CHITIETHOADONs { get; set; }
         public virtual DbSet<CHITIETSANPHAM> CHITIETSANPHAMs { get; set; }
+        public virtual DbSet<DATHANG> DATHANGs { get; set; }
+        public virtual DbSet<DATHANGCHITIET> DATHANGCHITIETs { get; set; }
         public virtual DbSet<HOADON> HOADONs { get; set; }
         public virtual DbSet<KHACHHANG> KHACHHANGs { get; set; }
         public virtual DbSet<NHANVIEN> NHANVIENs { get; set; }
@@ -39,8 +42,53 @@ namespace QuanLyQuanAo.Models
                 .WithOptional(e => e.account)
                 .HasForeignKey(e => e.tenDangNhap);
 
+            modelBuilder.Entity<CHITIETHOADON>()
+                .Property(e => e.ID)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CHITIETHOADON>()
+                .Property(e => e.BillID)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<CHITIETHOADON>()
+                .Property(e => e.ProductID)
+                .IsUnicode(false);
+
             modelBuilder.Entity<CHITIETSANPHAM>()
                 .Property(e => e.maSanPham)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<DATHANG>()
+                .Property(e => e.DatHangID)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<DATHANG>()
+                .Property(e => e.TenKhachHang)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<DATHANG>()
+                .Property(e => e.SoDienThoai)
+                .IsFixedLength()
+                .IsUnicode(false);
+
+            modelBuilder.Entity<DATHANG>()
+                .Property(e => e.MaDonHang)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<DATHANG>()
+                .Property(e => e.MaNhanVien)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<DATHANGCHITIET>()
+                .Property(e => e.ID)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<DATHANGCHITIET>()
+                .Property(e => e.DatHangID)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<DATHANGCHITIET>()
+                .Property(e => e.MaHangHoa)
                 .IsUnicode(false);
 
             modelBuilder.Entity<HOADON>()
@@ -48,12 +96,23 @@ namespace QuanLyQuanAo.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<HOADON>()
-                .Property(e => e.maSanPham)
+                .Property(e => e.maNhanVien)
                 .IsUnicode(false);
 
             modelBuilder.Entity<HOADON>()
-                .Property(e => e.maNhanVien)
+                .Property(e => e.DatHangID)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<HOADON>()
+                .Property(e => e.SDTKhachHang)
+                .IsFixedLength()
+                .IsUnicode(false);
+
+            modelBuilder.Entity<HOADON>()
+                .HasMany(e => e.CHITIETHOADONs)
+                .WithRequired(e => e.HOADON)
+                .HasForeignKey(e => e.BillID)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<HOADON>()
                 .HasOptional(e => e.QLHOADON)
@@ -65,8 +124,9 @@ namespace QuanLyQuanAo.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<KHACHHANG>()
-                .Property(e => e.maHoaDon)
-                .IsUnicode(false);
+                .HasMany(e => e.HOADONs)
+                .WithOptional(e => e.KHACHHANG)
+                .HasForeignKey(e => e.SDTKhachHang);
 
             modelBuilder.Entity<NHANVIEN>()
                 .Property(e => e.maNhanVien)
@@ -127,8 +187,19 @@ namespace QuanLyQuanAo.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<SANPHAM>()
+                .HasMany(e => e.CHITIETHOADONs)
+                .WithRequired(e => e.SANPHAM)
+                .HasForeignKey(e => e.ProductID)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<SANPHAM>()
                 .HasOptional(e => e.CHITIETSANPHAM)
                 .WithRequired(e => e.SANPHAM);
+
+            modelBuilder.Entity<SANPHAM>()
+                .HasMany(e => e.DATHANGCHITIETs)
+                .WithOptional(e => e.SANPHAM)
+                .HasForeignKey(e => e.MaHangHoa);
 
             modelBuilder.Entity<SANPHAM>()
                 .HasOptional(e => e.TONKHO)

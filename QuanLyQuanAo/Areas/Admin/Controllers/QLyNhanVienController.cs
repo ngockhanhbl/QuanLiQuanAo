@@ -16,9 +16,9 @@ namespace QuanLyQuanAo.Areas.Admin.Controllers
         {
             if (Session["username"] != null && (string)Session["quyen"] == "Admin")
             {
-                ViewBag.listInfoNhanVien = new  AdminNhanVienMoi().GetListNhanVien();
+                ViewBag.listInfoNhanVien = new AdminNhanVienMoi().GetListNhanVien();
                 return View();
-                
+
             }
 
             return RedirectToAction("Index", "Login", new { @area = "" });

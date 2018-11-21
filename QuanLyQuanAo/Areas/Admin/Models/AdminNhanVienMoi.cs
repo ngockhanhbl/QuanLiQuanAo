@@ -15,7 +15,7 @@ namespace QuanLyQuanAo.Areas.Admin.Models
             a.username = model.TenDangNhap;
             a.password = model.MatKhau;
             a.position = model.ViTri;
-            if( new ModifierAccount().CheckUsername(model.TenDangNhap))
+            if (new ModifierAccount().CheckUsername(model.TenDangNhap))
             {
                 new ModifierAccount().ThemAccount(a);
                 new ModifierNhanVien().ThemNhanVien(model);
@@ -25,8 +25,8 @@ namespace QuanLyQuanAo.Areas.Admin.Models
             {
                 return "false";
             }
-            
-            
+
+
         }
 
         public List<NHANVIEN> GetListNhanVien()

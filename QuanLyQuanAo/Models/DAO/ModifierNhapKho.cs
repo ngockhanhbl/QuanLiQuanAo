@@ -39,9 +39,5 @@ namespace QuanLyQuanAo.Models.DAO
             return (int)nk.soLuong;
         }
 
-
-
-
-
     }
 }

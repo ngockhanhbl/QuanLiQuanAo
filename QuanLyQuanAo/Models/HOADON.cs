@@ -12,7 +12,7 @@ namespace QuanLyQuanAo.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public HOADON()
         {
-            KHACHHANGs = new HashSet<KHACHHANG>();
+            CHITIETHOADONs = new HashSet<CHITIETHOADON>();
         }
 
         [Key]
@@ -20,26 +20,26 @@ namespace QuanLyQuanAo.Models
         public string maHoaDon { get; set; }
 
         [StringLength(100)]
-        public string maSanPham { get; set; }
-
-        [StringLength(100)]
-        public string tenSanPham { get; set; }
-
-        public int? soLuong { get; set; }
-
-        public double? donGia { get; set; }
-
-        public double thanhTien { get; set; }
-
-        [StringLength(100)]
         public string maNhanVien { get; set; }
 
         public DateTime ngayLapHoaDon { get; set; }
 
-        public virtual NHANVIEN NHANVIEN { get; set; }
+        [StringLength(100)]
+        public string DatHangID { get; set; }
+
+        public double? TongTien { get; set; }
+
+        [StringLength(11)]
+        public string SDTKhachHang { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<KHACHHANG> KHACHHANGs { get; set; }
+        public virtual ICollection<CHITIETHOADON> CHITIETHOADONs { get; set; }
+
+        public virtual DATHANG DATHANG { get; set; }
+
+        public virtual KHACHHANG KHACHHANG { get; set; }
+
+        public virtual NHANVIEN NHANVIEN { get; set; }
 
         public virtual QLHOADON QLHOADON { get; set; }
     }

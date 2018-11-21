@@ -1,0 +1,207 @@
+﻿@model QuanLyQuanAo.Areas.Salesman.Models.SalesManModel
+@{
+	ViewBag.Title = "Index";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="col-sm-12" style="height:20px;"></div>
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="col-sm-6">
+				<div class="col-sm-12 clear">
+					<div class="col-sm-12 clear">
+						<a class="btn btn-primary btn-style" data-toggle="modal" data-target="#ImportDialog">PHIẾU MUA HÀNG</a>
+						<div class="modal fade" id="ImportDialog">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<a class="close" data-dismiss="modal">&times;</a>
+										<h4>Lập Phiếu Mua Hàng</h4>
+									</div>
+									<div class="modal-body">
+
+										<div class="row">
+											<div class="col-sm-12">
+												<form id="ClassSubmit">
+													<div class="form-group col-sm-12">
+														<div class="col-sm-4 ">@Html.Label("Địa Chỉ  :", new { @class = "label-style" })</div>
+														<div class="col-sm-8">@Html.TextBoxFor(Model => Model.DatHang.DiaChi)</div>
+													</div>
+
+													<div class="form-group col-sm-12">
+														<div class="col-sm-4 ">@Html.Label("Tên Khách Hàng:", new { @class = "label-style" })</div>
+														<div class="col-sm-8">@Html.TextBoxFor(Model => Model.DatHang.TenKhachHang)</div>
+													</div>
+
+													<div class="form-group col-sm-12">
+														<div class="col-sm-4 ">@Html.Label("Số Điện Thoại:", new { @class = "label-style" })</div>
+														<div class="col-sm-8">@Html.TextBoxFor(Model => Model.DatHang.SoDienThoai)</div>
+													</div>
+
+													<div class="form-group col-sm-12">
+														<div class="col-sm-4">@Html.Label("Mã Nhân Viên:", new { @class = "label-style" })</div>
+														<div class="col-sm-8">@Html.TextBoxFor(Model => Model.DatHang.MaNhanVien)</div>
+													</div>
+
+													<div class="form-group col-sm-12">
+														<div class="col-sm-12">@Html.Label("Danh sách sản phẩm:", new { @class = "label-style2" })</div>
+													</div>
+													<div class="form-group col-sm-12">
+														<div class="col-sm-7"><b>Sản phẩm: </b></div>
+														<div class="col-sm-5"><b>Số lượng: </b></div>
+													</div>
+													<div class="form-group col-sm-12" style="height:25px;">
+														<div class="col-sm-7">@Html.DropDownListFor(Model=>Model.DatHangChiTiet.MaHangHoa, ViewBag.ListSP as SelectList, new { @id = "Product_1" ,@class = "form-control" })</div>
+														<div class="col-sm-3"><input type="number" id="ProductQuantity-1" class="form-control" onkeydown="return false" /></div>
+													</div>
+													<div class="col-sm-12" style="height:5px;"></div>
+													<div class="form-group col-sm-12" style="height:25px;display:none;" id="Show-1">
+														<div class="col-sm-7">@Html.DropDownListFor(Model => Model.DatHangChiTiet.MaHangHoa, ViewBag.ListSP as SelectList, new {@id="Product_2" ,@class = "form-control" })</div>
+														<div class="col-sm-3"><input type="number" id="ProductQuantity-2" class="form-control" onkeydown="return false" /></div>
+														<div class="col-sm-2"><a class="btn btn-danger" onclick="Hide('#Show-1')"><i class="glyphicon glyphicon-remove"></i></a></div>
+													</div>
+													<div class="form-group col-sm-12" style="height:25px;display:none;" id="Show-2">
+														<div class="col-sm-7">@Html.DropDownListFor(Model => Model.DatHangChiTiet.MaHangHoa, ViewBag.ListSP as SelectList, new {@id = "Product_3" ,@class = "form-control" })</div>
+														<div class="col-sm-3"><input type="number" id="ProductQuantity-3" class="form-control" onkeydown="return false" /></div>
+														<div class="col-sm-2"><a class="btn btn-danger" onclick="Hide('#Show-2')"><i class="glyphicon glyphicon-remove"></i></a></div>
+													</div>
+													<div class="form-group col-sm-12" style="height:25px;display:none;" id="Show-3">
+														<div class="col-sm-7">@Html.DropDownListFor(Model => Model.DatHangChiTiet.MaHangHoa, ViewBag.ListSP as SelectList, new {@id = "Product_4" ,@class = "form-control" })</div>
+														<div class="col-sm-3"><input type="number" id="ProductQuantity-4" class="form-control" onkeydown="return false" /></div>
+														<div class="col-sm-2"><a class="btn btn-danger" onclick="Hide('#Show-3')"><i class="glyphicon glyphicon-remove"></i></a></div>
+													</div>
+													<div class="form-group col-sm-12" style="height:25px;display:none;" id="Show-4">
+														<div class="col-sm-7">@Html.DropDownListFor(Model => Model.DatHangChiTiet.MaHangHoa, ViewBag.ListSP as SelectList, new {@id = "Product_5" ,@class = "form-control" })</div>
+														<div class="col-sm-3"><input type="number" id="ProductQuantity-5" class="form-control" onkeydown="return false" /></div>
+														<div class="col-sm-2"><a class="btn btn-danger" onclick="Hide('#Show-4')"><i class="glyphicon glyphicon-remove"></i></a></div>
+													</div>
+													<div class="form-group col-sm-12" style="height:25px;display:none;" id="Show-5">
+														<div class="col-sm-7">@Html.DropDownListFor(Model => Model.DatHangChiTiet.MaHangHoa, ViewBag.ListSP as SelectList, new {@id = "Product_6" ,@class = "form-control" })</div>
+														<div class="col-sm-3"><input type="number" id="ProductQuantity-6" class="form-control" onkeydown="return false" /></div>
+														<div class="col-sm-2"><a class="btn btn-danger" onclick="Hide('#Show-5')"><i class="glyphicon glyphicon-remove"></i></a></div>
+													</div>
+													<div class="col-sm-12" style="padding-left:30px; padding-top:10px;" id="ButtonAdd"><a class="btn btn-success" onclick="ShowNext()"><i class="glyphicon glyphicon-plus"></i></a></div>
+												</form>
+												<div class="col-sm-12" style="height:15px;"></div>
+											</div>
+											<div style="text-align:center;display:none;" id="loading-gif">
+												<img src="~/Content/Image/loading.gif" />
+											</div>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<a class="btn btn-default" onclick="Close()">Cancel</a>
+										<a class="btn btn-success" onclick="ConfirmSubmit()">Submit</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script>
+	var ImportDialog = function () {
+		$("#ImportDialog").modal("show");
+	}
+	var Close = function () {
+		window.location.reload();
+		}
+
+	var ShowNext = function () {
+		for (var i = 1; i < 6; i++) {
+			var GetID = "#Show-" + i;
+			if ($(GetID).is(":visible")) {
+				continue;
+			}
+			else {
+				$(GetID).show();
+				break;
+			}
+		}
+		if ($("#Show-5").is(":visible")) {
+			$("#ButtonAdd").hide();
+		}
+	}
+	var Hide = function (ID) {
+		$(ID).hide();
+		$("#ButtonAdd").show();
+	}
+	var ConfirmSubmit = function () {
+		$("#loading-gif").show();
+		var listProductID = "";
+		var listQuantity = "";
+		for (var i = 1; i < 7; i++) {
+			var GetID = "#Product_" + i;
+			var GetQuan = "#ProductQuantity-" + i;
+			if (i == 1) {
+				listProductID += $(GetID).val();
+				listQuantity += $(GetQuan).val();
+			}
+			else {
+				var GetShowID = "#Show-" + (i - 1);
+				if ($(GetShowID).is(":visible")) {
+					listProductID += "-" + $(GetID).val();
+					listQuantity += "-" + $(GetQuan).val();
+				}
+			}
+		}
+		var ten = "#DatHang_TenKhachHang";		
+		var diachi = "#DatHang_DiaChi";	
+		var sodienthoai = "#DatHang_SoDienThoai";
+		var manhanvien = "#DatHang_MaNhanVien";
+		var Info = $(ten).val() + "-" + $(diachi).val() + "-" + $(sodienthoai).val() + "-" + $(manhanvien).val();
+
+		$.ajax({
+			type: "Post",
+			url: "/Salesman/Home/JAddShoppingCheque",
+			data: { listProduct: listProductID, listQuantity: listQuantity, listInfo: Info },
+			success: function (check) {
+				if (check == "false") {
+					alert("false");
+				}
+				else {
+					alert("Chuyển Phiếu Bán Hàng Cho Kế Toán Thành Công");
+					window.location.reload();
+					
+				}
+			}
+		})
+	}
+
+
+
+
+		//var cancelAction = function () {
+		//	window.location.reload();
+		//}
+		//var submitShoppingCheque = function () {
+		//	var data = $("#formPhieuBanHang").serialize();
+		//	if (!$("#ThemNv").valid()) {
+		//		return false;
+		//	}
+		//	$.ajax({
+		//		type: "Post",
+		//		url: "/Salesman/Home/JAddShoppingCheque",
+		//		data: data,
+		//		success: function (check) {
+		//			if (check == "false") {
+		//				alert("false");
+		//			}
+		//			else {
+		//				window.onload();
+		//				alert("Chuyển Phiếu Bán Hàng Cho Kế Toán Thành Công");
+		//			}
+		//		}
+		//	})
+		//}
+
+
+
+</script>

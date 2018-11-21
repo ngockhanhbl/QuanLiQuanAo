@@ -3,7 +3,6 @@
 	ViewBag.Title = "Index";
 	Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <div class="col-sm-12">
 	<div class="col-sm-9"><h2 class="head">Admin</h2></div>
 	<div class="col-sm-3">@RenderPage("~/Views/Shared/_Logout.cshtml")</div>
@@ -100,7 +99,6 @@
 		$("#ChiTietSanPham_donGiaXuat").val("");
 		$("#ThemMoiSP").modal("hide");
 	}
-
 	var submitThemSP = function () {
 		var data = $("#ThemSp").serialize();
 		if (!$("#ThemSp").valid()) {
@@ -119,13 +117,10 @@
 					$("#ChiTietSanPham_donGiaNhap").val("");
 					$("#ChiTietSanPham_donGiaXuat").val("");
 					alert("Success");
-
 				}
 				else
 					alert("failed");
-
 			}
 		})
 	}
-
 </script>

@@ -24,7 +24,10 @@ namespace QuanLyQuanAo.Models.DAO
             {
                 if(a.password == password)
                 {
-                    return a.position;
+                    List<NHANVIEN> list = db.NHANVIENs.Where(x => x.tenDangNhap == username).ToList();
+                    string manv = list[0].maNhanVien;
+                    string Retun = manv + "-" + a.position;
+                    return Retun;
                 }
                 else
                 {

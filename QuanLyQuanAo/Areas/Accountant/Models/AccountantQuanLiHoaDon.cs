@@ -20,7 +20,14 @@ namespace QuanLyQuanAo.Areas.Accountant.Models
         public List<AccountantQuanLiHoaDon> GetListHDon()
         {
             QLQuanAoDBContent db = new QLQuanAoDBContent();
-            List<AccountantQuanLiHoaDon> list = db.HOADONs.Select(x => new AccountantQuanLiHoaDon { MaHoaDon = x.maHoaDon, NgayLapHoaDon = x.ngayLapHoaDon, ThanhTien = (float)x.thanhTien, MaNVienLapHDon = x.maNhanVien }).ToList();
+            List<AccountantQuanLiHoaDon> list = db.HOADONs.Select(x => new AccountantQuanLiHoaDon { MaHoaDon = x.maHoaDon, NgayLapHoaDon = x.ngayLapHoaDon, ThanhTien = (float)x.TongTien, MaNVienLapHDon = x.maNhanVien }).ToList();
+            return list;
+        }
+
+        public List<AccountantQuanLiHoaDon> GetListSearch()
+        {
+            QLQuanAoDBContent db = new QLQuanAoDBContent();
+            List<AccountantQuanLiHoaDon> list = db.HOADONs.Where(x => x.maHoaDon == MaHoaDon).Select(x => new AccountantQuanLiHoaDon { MaHoaDon = x.maHoaDon, NgayLapHoaDon = x.ngayLapHoaDon, ThanhTien = (float)x.TongTien, MaNVienLapHDon = x.maNhanVien }).ToList();
             return list;
         }
     }

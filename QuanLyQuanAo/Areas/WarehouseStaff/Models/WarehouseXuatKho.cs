@@ -64,7 +64,5 @@ namespace QuanLyQuanAo.Areas.WarehouseStaff.Models
             return "true";
             
         }
-
-
     }
 }

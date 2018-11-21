@@ -78,7 +78,7 @@
 										<div class="form-group">
 											<div class="col-sm-4">@Html.Label("Chức Vụ:", new { @class = "label-style" })</div>
 											<div class="col-sm-8">
-												@Html.DropDownListFor(Model => Model.ViTri, new List<SelectListItem> { new SelectListItem { Text = "Admin", Value = "Admin" }, new SelectListItem { Text = "Accountant", Value = "Accountant" }, new SelectListItem { Text = "Warehouse", Value = "Warehouse" } }, new { @class = "form-control" })
+												@Html.DropDownListFor(Model => Model.ViTri, new List<SelectListItem> { new SelectListItem { Text = "Admin", Value = "Admin" }, new SelectListItem { Text = "Accountant", Value = "Accountant" }, new SelectListItem { Text = "Warehouse", Value = "Warehouse" }, new SelectListItem { Text = "Salesman", Value = "Salesman" } }, new { @class = "form-control" })
 												@Html.ValidationMessageFor(Model => Model.ViTri, "", new { @class = "text-danger" })
 											</div>
 										</div>
@@ -221,7 +221,6 @@
 		$("#Account_password").val("");
 		$("#ThemMoiNV").modal("hide");
 	}
-
 	var submitThemNV = function () {
 		var data = $("#ThemNv").serialize();
 		if (!$("#ThemNv").valid()) {
@@ -236,35 +235,19 @@
 					alert("false");
 				}
 				else {
-					$("#NhanVien_cmnd").val("");
-					$("#NhanVien_tenNhanVien").val("");
-					$("#NhanVien_ngaySinh").val("");
-					$("#NhanVien_gioiTinh").val("");
-					$("#NhanVien_soDienThoai").val("");
-					$("#NhanVien_diaChi").val("");
-					$("#QLyNhanVien_chucVu").val("");
-					$("#Account_username").val("");
-					$("#Account_password").val("");
-					$("#ThemMoiNV").modal("hide");
+					window.location.reload();
 					alert(check);
 				}
-
-
 			}
 		})
 	}
-
-
-
 	var ConfirmDelete = function (maNhanVien) {
 		$("#hiddenmaNhanVien").val(maNhanVien);
 		$("#myModal").modal('show');
 	}
-
 	var DeleteNhanVien = function () {
 		$("#loderDiv").show();
 		var empID = $("#hiddenmaNhanVien").val();
-
 		$.ajax({
 			type: "Post",
 			url: "/Admin/QLyNhanVien/DeleteNhanVien",
@@ -274,8 +257,5 @@
 			}
 		})
 	}
-
-	
-
 
 </script>

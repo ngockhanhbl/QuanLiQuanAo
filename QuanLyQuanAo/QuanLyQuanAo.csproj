@@ -162,11 +162,16 @@
     <Compile Include="Areas\Admin\Models\AdminNhanVienMoi.cs" />
     <Compile Include="Areas\Admin\Models\AdminSanPhamMoi.cs" />
     <Compile Include="Areas\Admin\Models\MDeXuatNhapKho.cs" />
+    <Compile Include="Areas\Salesman\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Salesman\Models\SalesManModel.cs" />
+    <Compile Include="Areas\Salesman\SalesmanAreaRegistration.cs" />
     <Compile Include="Areas\WarehouseStaff\Controllers\HomeController.cs" />
+    <Compile Include="Areas\WarehouseStaff\Controllers\XuatKhoController.cs" />
     <Compile Include="Areas\WarehouseStaff\Models\WarehouseNhapKho.cs" />
     <Compile Include="Areas\WarehouseStaff\Models\WarehouseNhapXuat.cs" />
     <Compile Include="Areas\WarehouseStaff\Models\WareHouseTonKho.cs" />
     <Compile Include="Areas\WarehouseStaff\Models\WarehouseXuatKho.cs" />
+    <Compile Include="Areas\WarehouseStaff\Models\XuatKhoDHvaCTDT.cs" />
     <Compile Include="Areas\WarehouseStaff\WarehouseStaffAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -174,15 +179,23 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\account.cs" />
+    <Compile Include="Models\CHITIETHOADON.cs" />
     <Compile Include="Models\CHITIETSANPHAM.cs" />
     <Compile Include="Models\DAO\Login.cs" />
     <Compile Include="Models\DAO\ModifierAccount.cs" />
+    <Compile Include="Models\DAO\ModifierChiTietHD.cs" />
     <Compile Include="Models\DAO\ModifierChiTietSanPham.cs" />
+    <Compile Include="Models\DAO\ModifierDatHang.cs" />
+    <Compile Include="Models\DAO\ModifierDatHangChiTiet.cs" />
     <Compile Include="Models\DAO\ModifierHD.cs" />
+    <Compile Include="Models\DAO\ModifierKhachHang.cs" />
     <Compile Include="Models\DAO\ModifierNhanVien.cs" />
     <Compile Include="Models\DAO\ModifierNhapKho.cs" />
+    <Compile Include="Models\DAO\ModifierPhieuMuaHang.cs" />
     <Compile Include="Models\DAO\ModifierSP.cs" />
     <Compile Include="Models\DAO\ModifierTonKho.cs" />
+    <Compile Include="Models\DATHANG.cs" />
+    <Compile Include="Models\DATHANGCHITIET.cs" />
     <Compile Include="Models\HOADON.cs" />
     <Compile Include="Models\KHACHHANG.cs" />
     <Compile Include="Models\NHANVIEN.cs" />
@@ -207,6 +220,7 @@
     <Content Include="Content\image\ImageAD.png" />
     <Content Include="Content\image\images.png" />
     <Content Include="Content\image\InternetSlowdown_Day.gif" />
+    <Content Include="Content\image\loading.gif" />
     <Content Include="Content\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -217,17 +231,21 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Accountant\Views\web.config" />
     <Content Include="Areas\WarehouseStaff\Views\web.config" />
     <Content Include="Areas\Accountant\Views\Home\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
     <Content Include="Areas\WarehouseStaff\Views\Home\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\QLyNhanVien\Index.cshtml" />
     <Content Include="Areas\Accountant\Views\InHoaDon\Index.cshtml" />
     <Content Include="Areas\Accountant\Views\QuanLiHoaDon\Index.cshtml" />
     <Content Include="Areas\Accountant\Views\Shared\SearchPartial.cshtml" />
+    <Content Include="Areas\Salesman\Views\web.config" />
+    <Content Include="Areas\Salesman\Views\Home\Index.cshtml" />
     <Content Include="Areas\Admin\Views\DeXuatNhapKho\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\QLyNhanVien\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\WarehouseStaff\Views\XuatKho\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -257,6 +275,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
+    <Folder Include="Areas\Salesman\Views\Shared\" />
     <Folder Include="Areas\WarehouseStaff\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>

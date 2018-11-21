@@ -27,7 +27,7 @@ namespace QuanLyQuanAo.Areas.Admin.Models
         public List<MDeXuatNhapKho> getListNhapKho()
         {
             QLQuanAoDBContent db = new QLQuanAoDBContent();
-            List<MDeXuatNhapKho> list = db.nhapKhoes.Select(x => new MDeXuatNhapKho { TrangThai = (int)x.TrangThai,id = x.id ,soLuong = (int)x.soLuong, ngayNhap = (DateTime)x.ngayNhap, tenSanPham = x.SANPHAM.tenSanPham, size = x.SANPHAM.size, xuatXu = x.SANPHAM.xuatXu,maSanPham =x.maSanPham }).Where(x => x.TrangThai == 0).ToList();
+            List<MDeXuatNhapKho> list = db.nhapKhoes.Select(x => new MDeXuatNhapKho { TrangThai = (int)x.TrangThai, id = x.id, soLuong = (int)x.soLuong, ngayNhap = (DateTime)x.ngayNhap, tenSanPham = x.SANPHAM.tenSanPham, size = x.SANPHAM.size, xuatXu = x.SANPHAM.xuatXu, maSanPham = x.maSanPham }).Where(x => x.TrangThai == 0).ToList();
             return list;
         }
 

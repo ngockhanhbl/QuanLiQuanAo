@@ -1,5 +1,4 @@
-﻿
-using QuanLyQuanAo.Areas.Admin.Models;
+﻿using QuanLyQuanAo.Areas.Admin.Models;
 using QuanLyQuanAo.Areas.WarehouseStaff.Models;
 using QuanLyQuanAo.Models;
 using QuanLyQuanAo.Models.DAO;
@@ -17,6 +16,7 @@ namespace QuanLyQuanAo.Areas.Admin.Controllers
         public ActionResult Index()
         {
             ViewBag.listNhapKho = new MDeXuatNhapKho().getListNhapKho();
+            ViewBag.listInfoTonKho = new WareHouseTonKho().GetListTK();
             return View();
         }
 
@@ -26,7 +26,7 @@ namespace QuanLyQuanAo.Areas.Admin.Controllers
             new ModifierTonKho().UpdateTonKhoNhap(NKID, maSP);
             return Json("true", JsonRequestBehavior.AllowGet);
         }
-       public JsonResult HuyDeXuatNhapKho(string NKID)
+        public JsonResult HuyDeXuatNhapKho(string NKID)
         {
             new ModifierNhapKho().deleteDeXuatNhapKho(NKID);
             return Json("true", JsonRequestBehavior.AllowGet);

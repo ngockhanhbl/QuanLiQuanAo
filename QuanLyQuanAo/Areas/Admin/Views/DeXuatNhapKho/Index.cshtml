@@ -1,10 +1,14 @@
-﻿
-@{
+﻿@{
 	ViewBag.Title = "Index";
 	Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<div class="col-sm-12" style="height:50px;"></div>
+<div class="col-sm-12">
+	<div class="col-sm-9"><h4 class="head">Admin Quản Lí Kho</h4></div>
+	<div class="col-sm-3">@RenderPage("~/Views/Shared/_Logout.cshtml")</div>
+</div>
+<div class="col-sm-12" style="height:15px;"></div>
+<div class="col-sm-6"><div>@Html.ActionLink("Home Admin", "Index", "Home", new { @area = "Admin" }, new { @class = "btn btn-success btn-style" })</div></div>
+<div class="col-sm-12" style="height:15px;"></div>
 <div class="container">
 	<div class="row">
 		<div class="col-sm-12 clear">
@@ -53,8 +57,50 @@
 	</div>
 </div>
 
+<div class="container">
+	<div class="row">
+		<div class="col-sm-12 clear">
+			<div class="panel-group">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h4>KHO HÀNG</h4>
+					</div>
+					<div class="panel-body">
+						<table class="table table-hover">
+							<thead>
+								<tr>
+									<th class="col-sm-1">ID</th>
+									<th class="col-sm-6">Tên SP</th>
+									<th class="col-sm-2">Số Lượng</th>
+									<th class="col-sm-1">Size</th>
+									<th class="col-sm-2">Xuất Xứ</th>
+								</tr>
+							</thead>
+							<tbody>
+								@if (ViewBag.listInfoTonKho != null)
+								{
+									foreach (var item in ViewBag.listInfoTonKho)
+									{
+										<tr>
+											<td>@item.maHang</td>
+											<td>@item.TenSP</td>
+											<td>@item.soLuong</td>
+											<td>@item.Size</td>
+											<td>@item.XuatXu</td>
+										</tr>
+									}
+								}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
 <script>
-	var submitDone = function (NhapKhoID,SPID) {
+	var submitDone = function (NhapKhoID, SPID) {
 		$.ajax({
 			type: "Post",
 			url: "/Admin/DeXuatNhapKho/updateTonKho",
@@ -62,17 +108,14 @@
 			success: function (check) {
 				if (check == "true") {
 					window.location.reload(true);
-					
+
 				}
 				else {
 					alert("False");
 				}
-
-
 			}
 		})
 	}
-
 	var submitCancel = function (NhapKhoID) {
 		$.ajax({
 			type: "Post",
@@ -81,16 +124,11 @@
 			success: function (check) {
 				if (check == "true") {
 					window.location.reload(true);
-
 				}
 				else {
 					alert("False");
 				}
-
-
 			}
 		})
 	}
-
-
 </script>
