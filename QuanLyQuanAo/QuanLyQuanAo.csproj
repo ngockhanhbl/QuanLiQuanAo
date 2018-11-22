@@ -191,7 +191,6 @@
     <Compile Include="Models\DAO\ModifierKhachHang.cs" />
     <Compile Include="Models\DAO\ModifierNhanVien.cs" />
     <Compile Include="Models\DAO\ModifierNhapKho.cs" />
-    <Compile Include="Models\DAO\ModifierPhieuMuaHang.cs" />
     <Compile Include="Models\DAO\ModifierSP.cs" />
     <Compile Include="Models\DAO\ModifierTonKho.cs" />
     <Compile Include="Models\DATHANG.cs" />
@@ -221,6 +220,7 @@
     <Content Include="Content\image\images.png" />
     <Content Include="Content\image\InternetSlowdown_Day.gif" />
     <Content Include="Content\image\loading.gif" />
+    <Content Include="Content\image\salesman.jpg" />
     <Content Include="Content\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
