@@ -1,3 +1,4 @@
 # QuanLiQuanAo
-Language: C#.net,Bootstrap,Razer,Sql server
+Language: C#.net,Bootstrap,Razer,Sql server.
+
 Structure: MVC
